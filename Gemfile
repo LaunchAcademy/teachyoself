@@ -40,3 +40,5 @@ group :test, :development do
   gem 'valid_attribute'
   gem 'factory_girl'
 end
+
+gem 'foundation-rails'

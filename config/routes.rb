@@ -1,8 +1,9 @@
 TeachYoSelf::Application.routes.draw do
 
   devise_for :users
-  resources :posts, only: [:index]
+  resources :posts, only: [:index, :new, :show]
   root to: "posts#index"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

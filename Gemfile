@@ -14,6 +14,12 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+gem 'foundation-rails'
+gem 'simple_form'
+gem 'devise'
+
+gem 'simple_form'
+gem 'devise'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -38,7 +44,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'valid_attribute'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
 gem 'foundation-rails'

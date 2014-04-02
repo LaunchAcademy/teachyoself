@@ -1,4 +1,4 @@
-<nav class="top-bar" data-topbar="">
+<nav class="top-bar">
   <!-- Title -->
   <ul class="title-area">
     <li class="name"><h1><a href=<%= posts_path %>>TeachYoSelf</a></h1></li>
@@ -14,8 +14,8 @@
     <!-- Top Bar Left Nav Elements -->
     <ul class="left">
 
-      <!-- Search | has-form wrapper -->
-      <li class="has-form">
+      <!-- Search -->
+      <li>
         <div class="row collapse">
           <div class="large-8 small-9 columns">
             <input type="text" placeholder="Find Stuff">
@@ -25,10 +25,10 @@
           </div>
         </div>
       </li>
-      <li class="has-form">
+      <li>
         <a class="button">Tags</a>
       </li>
-      <li class="has-form">
+      <li>
         <a class="button">Share New Tutorial</a>
       </li>
     </ul>
@@ -39,8 +39,14 @@
       <li class="divider"></li>
 
       <!-- Button -->
-      <li class="has-form show-for-large-up">
-        <a href="#" class="button">Login</a>
+      <% if user_signed_in? %>
+        <li class="show-for-large-up">
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
       </li>
+      <% else %>
+      <li class="show-for-large-up">
+        <%= link_to "Log in", new_user_session_path %>
+      </li>
+      <% end %>
     </ul>
   </section></nav>

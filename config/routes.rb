@@ -59,5 +59,6 @@ TeachYoSelf::Application.routes.draw do
   #     resources :products
   #   end
     # root to: 'posts#index'
+
 end
 

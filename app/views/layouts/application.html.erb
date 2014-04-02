@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>TeachYoSelf</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
 
-<%= render 'layouts/messages' %>
+  <body>
 
-<%= yield %>
-
-</body>
+    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/messages' %>
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>

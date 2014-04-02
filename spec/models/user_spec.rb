@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe User do
-  it {should validate_presence_of(:user_name)}
+  before(:each) do
+    FactoryGirl.create(:user)
+  end
+
+  it {should validate_presence_of(:username)}
+  it {should validate_uniqueness_of(:username)}
   it {should validate_presence_of(:email)}
+
 end

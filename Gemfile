@@ -41,5 +41,5 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'valid_attribute'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end

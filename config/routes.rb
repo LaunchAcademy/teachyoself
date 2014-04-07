@@ -1,7 +1,7 @@
 TeachYoSelf::Application.routes.draw do
 
   devise_for :users
-  resources :posts, only: [:index, :new, :show]
+  resources :posts, except: :destroy
   root to: "posts#index"
 
 

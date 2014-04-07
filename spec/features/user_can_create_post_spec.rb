@@ -58,6 +58,8 @@ feature 'Registered user can create a new tutorial post', %q{
     click_button('Share Tutorial')
 
     expect(page).to have_content('Mushrooms are awfully easy to cook')
+    expect(page).to have_content('http://www.foodnews.com')
+    expect(page).to have_content('cooking, mushrooms')
     expect(Post.count).to eq(prev_count + 1)
     expect(Post.last.user).to eq(doug)
   end

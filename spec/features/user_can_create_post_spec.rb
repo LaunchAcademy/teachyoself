@@ -27,8 +27,8 @@ feature 'Registered user can create a new tutorial post', %q{
     visit new_post_path
 
     click_button('Share Tutorial')
-
-    expect(page).to have_content("can't be blank")
+    expect(page).to have_content("Titlecan't be blank")
+    expect(page).to have_content("URLcan't be blank")
   end
 
   scenario 'an unregistered user cannot create a post' do

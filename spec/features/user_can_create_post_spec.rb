@@ -59,6 +59,7 @@ feature 'Registered user can create a new tutorial post', %q{
 
     expect(page).to have_content('Mushrooms are awfully easy to cook')
     expect(Post.count).to eq(prev_count + 1)
+    expect(Post.last.user).to eq(doug)
   end
 
 end

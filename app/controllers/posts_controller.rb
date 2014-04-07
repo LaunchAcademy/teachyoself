@@ -1,14 +1,12 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     @posts = Post.all
   end
 
   def new
-    if user_signed_in?
-      @post = Post.new
-    else
-      redirect_to new_user_session_path, notice: "Please sign in before posting."
-    end
+    @post = Post.new
   end
 
   def create

@@ -15,14 +15,7 @@ feature 'Registered user can create a new tutorial post', %q{
   scenario 'a registered user enters an invalid post' do
     prev_count = Post.count
     doug = FactoryGirl.create(:user)
-    visit new_user_session_path
-
-    fill_in 'Email', with: doug.email
-    fill_in 'user_password', with: doug.password
-
-    within('form') do
-      click_on 'Sign in'
-    end
+    sign_in_as(doug)
 
     visit new_post_path
 
@@ -33,20 +26,13 @@ feature 'Registered user can create a new tutorial post', %q{
 
   scenario 'an unregistered user cannot create a post' do
     visit new_post_path
-    expect(page).to have_content('Please sign in before posting.')
+    expect(page).to have_content("You need to sign in or sign up before continuing.")
   end
 
   scenario 'a registered user wishes to create a valid post' do
     prev_count = Post.count
     doug = FactoryGirl.create(:user)
-    visit new_user_session_path
-
-    fill_in 'Email', with: doug.email
-    fill_in 'user_password', with: doug.password
-
-    within('form') do
-      click_on 'Sign in'
-    end
+    sign_in_as(doug)
 
     visit new_post_path
 

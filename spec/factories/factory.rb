@@ -7,4 +7,11 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
+  factory :post do
+    title "MyString"
+    url "MyString"
+    description "MyText"
+    tags "MyString"
+    user
+  end
 end

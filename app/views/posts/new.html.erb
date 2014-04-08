@@ -1,0 +1,7 @@
+<%= simple_form_for @post do |f| %>
+  <%= f.input :title %>
+  <%= f.input :url, label: "URL" %>
+  <%= f.input :description %>
+  <%= f.input :tags %>
+  <%= f.button :submit, "Share Tutorial" %>
+<% end %>

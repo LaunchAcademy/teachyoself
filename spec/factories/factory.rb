@@ -7,7 +7,6 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
-  FactoryGirl.define do
   factory :post do
     title "MyString"
     url "MyString"
@@ -15,6 +14,4 @@ FactoryGirl.define do
     tags "MyString"
     user
   end
-end
-
 end

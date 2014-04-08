@@ -15,22 +15,14 @@ feature 'user can sign out', %q{
   context 'an authenticated user should be able to sign out' do
     it 'displays a sign out link when a user signs in' do
       doug = FactoryGirl.create(:user)
-      visit new_user_session_path
-
-      fill_in 'Email', with: doug.email
-      fill_in 'Password', with: doug.password
-      click_button('Sign in')
+      sign_in_as(doug)
 
       expect(page).to have_content('Sign out')
     end
 
     it 'destroys user session when signed out' do
       doug = FactoryGirl.create(:user)
-      visit new_user_session_path
-
-      fill_in 'Email', with: doug.email
-      fill_in 'Password', with: doug.password
-      click_button('Sign in')
+      sign_in_as(doug)
       click_on('Sign out')
 
       expect(page).to have_content("Signed out successfully.")

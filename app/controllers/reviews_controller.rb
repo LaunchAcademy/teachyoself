@@ -1,29 +1,26 @@
 class ReviewsController < ApplicationController
   def index
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id]).include([:reviews])
     @reviews = @post.reviews
   end
 
   def new
     @post = Post.find(params[:post_id])
-    @review = Review.new
+    @review = @post.reviews.build
   end
 
   def create
-    @post = Post.find(params[:post_id])
     @review = Review.new(review_params)
-    @review.post = @post
-    @review.user = current_user
     if @review.save
       redirect_to :back, notice: "Review successfully created!"
     else
-      redirect_to post_path(@post), notice: "Review not created. Please enter a rating."
+      redirect_to :back, notice: "Review not created. Please enter a rating."
     end
   end
 
   private
   def review_params
-    params.require(:review).permit(:body, :rating, :user_id, :post_id)
+    params.require(:review).permit(:body, :rating).merge(user_id: current_user.id, post_id: params[:post_id])
   end
 
 end

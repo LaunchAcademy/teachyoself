@@ -12,7 +12,7 @@ feature 'Unregistered user visits home page', %q{
 
   context 'sees a nav bar and can visit links' do
     it 'has a link called login' do
-      expect(page).to have_content "Login"
+      expect(page).to have_content "Log in"
     end
 
     it 'has a link called new' do

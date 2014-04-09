@@ -42,4 +42,8 @@ group :test, :development do
   gem 'factory_girl_rails'
 end
 
-gem 'foundation-rails'
+group :test do
+  gem 'launchy'
+end
+
+

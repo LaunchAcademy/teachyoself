@@ -21,11 +21,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @review = Review.new
+    @reviews = @post.reviews
   end
 
 
   private
-
   def post_params
     params.require(:post).permit(:title, :url, :description, :tags)
   end

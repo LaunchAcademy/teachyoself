@@ -9,9 +9,16 @@ FactoryGirl.define do
 
   factory :post do
     title "MyString"
-    url "MyString"
+    url "http://www.google.com"
     description "MyText"
     tags "MyString"
     user
+  end
+
+  factory :review do
+    body "MyText"
+    rating 1
+    user_id 1
+    post_id 1
   end
 end

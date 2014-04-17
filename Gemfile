@@ -19,6 +19,7 @@ gem 'foundation-rails'
 gem 'simple_form'
 gem 'devise'
 gem 'validate_url'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -40,6 +41,9 @@ group :test, :development do
   gem 'shoulda'
   gem 'valid_attribute'
   gem 'factory_girl_rails'
+  gem 'dotenv-rails'
 end
 
-gem 'foundation-rails'
+
+gem 'carrierwave'
+gem 'fog'

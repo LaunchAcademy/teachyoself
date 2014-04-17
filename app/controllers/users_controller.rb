@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :current_user, only: [:update]
+
   def show
     @user = User.find(params[:id])
   end
@@ -11,7 +13,7 @@ class UsersController < ApplicationController
       if @user.save
         redirect_to user_path(@user), notice: 'Image uploaded successfully!'
       else
-        redirect_to user_path(@user), notice: 'must be a gif, jpg, or png image.'
+        redirect_to user_path(@user)
       end
     else
       redirect_to user_path(@user), notice: 'You can only update your own profile picture'

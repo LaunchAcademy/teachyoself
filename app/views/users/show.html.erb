@@ -1,12 +1,8 @@
-<% if @user.avatar_url.nil? %>
-  <p>There is not currently a profile picture for <%= @user.username %></p>
+<% if @user.avatar_url %>
+  <p><label><%= @user.username %></label>
+  <%= image_tag(@user.avatar_url) %></p>
 <% else %>
-  <%= simple_form_for @user, :html => {:multipart => true} do |f| %>
-    <p>
-      <label>My Avatar</label>
-      <%= image_tag(@user.avatar_url) if @user.avatar? %>
-    </p>
-  <% end %>
+  <p>There is not currently a profile picture for <%= @user.username %></p>
 <% end %>
 
 <% if current_user == @user %>
@@ -16,6 +12,6 @@
       <%= f.file_field :avatar %>
       <%= f.hidden_field :avatar_cache %>
       <%= f.submit %>
-    </p>
+     </p>
   <% end %>
 <% end %>

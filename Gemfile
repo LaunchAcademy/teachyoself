@@ -44,6 +44,10 @@ group :test, :development do
   gem 'dotenv-rails'
 end
 
-
 gem 'carrierwave'
 gem 'fog'
+
+group :test do
+  gem 'launchy'
+end
+

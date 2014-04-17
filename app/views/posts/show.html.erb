@@ -16,3 +16,30 @@
     </tr>
   </tbody>
 </table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rating</th>
+      <th>Review</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @reviews.each do |review| %>
+    <tr>
+      <td><%= review.rating %></td>
+      <td><%= review.body %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% if user_signed_in? %>
+<%= simple_form_for [@post, @review] do |f| %>
+    <%= f.input :rating, as: :select, collection: 1..5 %>
+    <%= f.input :body, label: "Review" %>
+    <%= f.submit "Add Review" %>
+  <% end %>
+<% else %>
+<% end %>

@@ -42,6 +42,7 @@ group :test, :development do
   gem 'valid_attribute'
   gem 'factory_girl_rails'
   gem 'dotenv-rails'
+  gem 'quiet_assets'
 end
 
 gem 'carrierwave'

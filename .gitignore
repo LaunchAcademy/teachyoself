@@ -16,4 +16,5 @@
 /tmp
 /public/tmp
 /public/uploads
+/public/development
 .env

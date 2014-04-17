@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'CSV'
 
 
 feature 'a user can upload a profile pic', %q{
@@ -45,7 +46,7 @@ feature 'a user can upload a profile pic', %q{
     visit user_path(@doug)
     attach_file('user_avatar', File.join(Rails.root, 'table.csv'))
     click_button('Update User')
-    expect(page).to have_content('must be a gif, jpg, or png image.')
+    expect(page).to have_content('Must be a gif, jpg, or png image.')
   end
 
   scenario 'a logged in user can only view upload buttons on their own profile' do

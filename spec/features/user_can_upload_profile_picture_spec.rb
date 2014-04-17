@@ -38,8 +38,12 @@ feature 'a user can upload a profile pic', %q{
   scenario 'a logged in user enters an invalid image type' do
     sign_in_as(@doug)
 
+    CSV.open("table.csv", "w") do |csv|
+      csv << ["row", "of", "CSV", "data"]
+    end
+
     visit user_path(@doug)
-    attach_file('user_avatar', File.join(Rails.root, '/spec/support/state_table.csv'))
+    attach_file('user_avatar', File.join(Rails.root, 'table.csv'))
     click_button('Update User')
     expect(page).to have_content('must be a gif, jpg, or png image.')
   end

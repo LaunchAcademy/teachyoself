@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   def index
     @post = Post.find(params[:post_id]).include([:reviews])
     @reviews = @post.reviews
+    @vote = @post.reviews.votes
   end
 
   def new
@@ -16,6 +17,10 @@ class ReviewsController < ApplicationController
     else
       redirect_to :back, notice: "Review not created. Please enter a rating."
     end
+  end
+
+  def vote
+    binding.pry
   end
 
   private

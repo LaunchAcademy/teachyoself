@@ -3,9 +3,14 @@ TeachYoSelf::Application.routes.draw do
   devise_for :users
   # resources :posts, except: :destroy
   root to: "posts#index"
+  resources :votes
 
   resources :posts, except: :destroy do
     resources :reviews
+  end
+
+  resources :reviews, only: [] do
+    resources :votes, only: [:create, :update]
   end
 
 

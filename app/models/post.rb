@@ -5,4 +5,9 @@ class Post < ActiveRecord::Base
   validates :user, presence: true
   belongs_to :user
   validates :url, url: true
+
+  def self.search(string)
+    Post.where("title ILIKE ?", "%#{string}%").limit(25)
+  end
+
 end

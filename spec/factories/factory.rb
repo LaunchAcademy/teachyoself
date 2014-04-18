@@ -8,6 +8,10 @@ FactoryGirl.define do
     avatar 'anthony.png'
   end
 
+  factory :admin do
+    admin true
+  end
+
   factory :post do
     title "Wondering how to turn your teeth from white to GOLD?"
     url "http://www.blingyomouth.com"

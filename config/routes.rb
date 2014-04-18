@@ -10,6 +10,11 @@ TeachYoSelf::Application.routes.draw do
       resources :reviews
     end
 
+  namespace :admin do
+    resources :posts, only: [:index] do
+      # resources :reviews, only: [:show, :index, :destroy]
+    end
+  end
 
 
 

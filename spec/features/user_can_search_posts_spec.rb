@@ -22,19 +22,27 @@ feature 'Search posts', %q{
 
   scenario 'a user (registered or not) wishes to search for posts' do
     visit posts_path
-  expect(page).to have_button 'Search'
+    expect(page).to have_button 'Search'
   end
+
+  scenario 'the results are limited to 25 titles' do
+    john = FactoryGirl.create(:user)
+    sign_in_as(john)
+    visit new_post_path
+    FactoryGirl.create_list(:post, 30)
+    visit posts_path
+    fill_in 'search', with: 'MyString'
+    click_button('Search')
+    expect(page).to have_content('MyString')
+    expect(page).to have_content('25')
+    expect(page).to have_no_content('26')
+    end
 
   scenario 'a user can enter text into a search box and clicking search returns a list of results' do
     doug = FactoryGirl.create(:user)
     sign_in_as(doug)
     visit new_post_path
-    fill_in 'Title', with: 'Mushrooms are awfully easy to cook'
-    fill_in 'URL', with: 'http://www.foodnews.com'
-    fill_in 'Description', with: ''
-    fill_in 'Tags', with: 'cooking, mushrooms'
-    click_button('Share Tutorial')
-
+    FactoryGirl.create(:post, title: 'Mushrooms are awfully easy to cook', url: 'http://www.foodnews.com', tags: 'cooking, mushrooms')
     visit posts_path
     fill_in 'search', with: 'cook'
     click_button('Search')
@@ -45,12 +53,7 @@ feature 'Search posts', %q{
     doug = FactoryGirl.create(:user)
     sign_in_as(doug)
     visit new_post_path
-    fill_in 'Title', with: 'Data Structures'
-    fill_in 'URL', with: 'https://www.youtube.com/watch?v=cOfhwxirhUE'
-    fill_in 'Description', with: ''
-    fill_in 'Tags', with: 'data, structures'
-    click_button('Share Tutorial')
-
+    FactoryGirl.create(:post, title: 'Data Structures', url: 'https://www.youtube.com/watch?v=cOfhwxirhUE', tags: 'data, structures')
     visit posts_path
     fill_in 'search', with: 'data structures'
     click_button('Search')
@@ -58,25 +61,4 @@ feature 'Search posts', %q{
     click_button('Search')
   end
 
-  scenario 'the results are limited to 25 titles' do
-    john = FactoryGirl.create(:user)
-    sign_in_as(john)
-    count = 1
-    while count <= 30
-      visit new_post_path
-      fill_in 'Title', with: "General Game Playing #{count}"
-      fill_in 'URL', with: 'https://www.coursera.org/course/ggp'
-      fill_in 'Description', with: ''
-      fill_in 'Tags', with: 'game, games'
-      click_button('Share Tutorial')
-      count +=1
-  end
-
-    visit posts_path
-    fill_in 'search', with: 'General Game Playing'
-    click_button('Search')
-    expect(page).to have_content('General Game Playing')
-    expect(page).to have_content('25')
-    expect(page).to have_no_content('26')
-    end
 end

@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
 
   factory :post do
-    title "MyString"
+    sequence(:title) { |n| "MyString #{n}" }
     url "http://www.google.com"
     description "MyText"
     tags "MyString"

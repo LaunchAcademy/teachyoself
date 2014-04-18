@@ -1,19 +1,17 @@
 module Admin
-  class PostsController < ApplicationController
+  class ReviewsController < ApplicationController
     before_action :is_admin?
 
     def index
-      @posts = Post.all
+      @reviews = Review.all
     end
 
     def destroy_multiple
-      if params[:post_ids]
-        params[:post_ids].each do |id|
-          @post = Post.find(id)
-          @post.destroy
-        end
+      params[:review_ids].each do |id|
+        @review = Review.find(id)
+        @review.destroy
       end
-      redirect_to posts_path
+      redirect_to admin_reviews_path
     end
 
     private

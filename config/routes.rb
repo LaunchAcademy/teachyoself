@@ -11,12 +11,20 @@ TeachYoSelf::Application.routes.draw do
     end
 
   namespace :admin do
-    resources :posts, only: [:index] do
-      # resources :reviews, only: [:show, :index, :destroy]
+    resources :posts, only: [:index, :destroy] do
+      collection do
+        delete 'destroy_multiple'
+      end
     end
   end
 
-
+  namespace :admin do
+    resources :reviews, only: [:index, :destroy] do
+      collection do
+        delete 'destroy_multiple'
+      end
+    end
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

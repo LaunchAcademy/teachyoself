@@ -1,0 +1,24 @@
+<%= link_to "Home", posts_path %>
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+<%= form_tag destroy_multiple_admin_reviews_path, method: :delete do %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rating</th>
+      <th>Review</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @reviews.each do |review| %>
+    <tr>
+      <td><%= review.rating %></td>
+      <td><%= review.body %></td>
+      <td><%= check_box_tag "review_ids[]", review.id %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= submit_tag "Delete selected" %>
+<% end %>

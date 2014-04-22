@@ -76,11 +76,10 @@
 </table>
 
 
-<% if user_signed_in? and !current_user.admin %>
-<%= simple_form_for [@post, @review] do |f| %>
+<% if user_signed_in? && !current_user.admin && current_user.has_reviewed?(@post) == false && @post.user != current_user %>
+  <%= simple_form_for [@post, @review] do |f| %>
     <%= f.input :rating, as: :select, collection: 1..5 %>
     <%= f.input :body, label: "Review" %>
     <%= f.submit "Add Review" %>
   <% end %>
-<% else %>
 <% end %>

@@ -4,8 +4,9 @@ describe Review do
   it { should belong_to(:user) }
   it { should belong_to(:post) }
   it { should validate_presence_of(:rating) }
-  it { should validate_numericality_of(:rating).is_greater_than(0).is_less_than(6) }
+  it { should validate_numericality_of(:rating).only_integer.is_greater_than(0).is_less_than(6) }
   it { should have_many(:votes) }
+  it { should validate_uniqueness_of(:user_id) }
 
   it 'should count all votes for reviews' do
     doug = FactoryGirl.create(:user)

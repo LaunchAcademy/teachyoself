@@ -21,5 +21,29 @@ class User < ActiveRecord::Base
     false
   end
 
+  def up_vote_count
+    count = 0
+    self.reviews.each do |review|
+      review.votes.each do |vote|
+        if vote[:vote] == 1
+          count += 1
+        end
+      end
+    end
+    count
+  end
+
+  def down_vote_count
+    count = 0
+    self.reviews.each do |review|
+      review.votes.each do |vote|
+        if vote[:vote] == -1
+          count += 1
+        end
+      end
+    end
+    count
+  end
+
 end
 

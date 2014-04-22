@@ -18,4 +18,34 @@ describe User do
 
     expect(@doug.has_voted?(review)).to eql(true)
   end
+
+  it 'should count the total number of up-votes' do
+
+    review = FactoryGirl.create(:review, user: @doug)
+    post = FactoryGirl.create(:post)
+
+    (0..5).each do |x|
+      user = FactoryGirl.create(:user)
+      FactoryGirl.create(:vote, user: user, review: review)
+    end
+
+    expect(@doug.up_vote_count).to eql(6)
+  end
+
+  it 'should count the total number of down-votes' do
+
+    review = FactoryGirl.create(:review, user: @doug)
+    post1 = FactoryGirl.create(:post)
+    post2 = FactoryGirl.create(:post)
+
+    (0..5).each do |x|
+      user = FactoryGirl.create(:user)
+      FactoryGirl.create(:vote, vote: -1, user: user, review: review)
+    end
+
+    expect(@doug.down_vote_count).to eql(6)
+    expect(Post.count).to eql(3)
+    expect(Review.count).to eql(1)
+  end
+
 end

@@ -1,9 +1,36 @@
-<% if @user.avatar_url %>
-  <p><label><%= @user.username %></label>
-  <%= image_tag(@user.avatar_url) %></p>
-<% else %>
-  <p>There is not currently a profile picture for <%= @user.username %></p>
-<% end %>
+<div>
+  <h3><%= @user.username %></h3>
+
+  <% if @user.avatar_url %>
+  <p>
+    <%= image_tag(@user.avatar_url) %>
+  </p>
+  <% else %>
+  <p>
+    There is not currently a profile picture for <%= @user.username %>
+  </p>
+  <% end %>
+  <ul>
+    <li>Posts: <%= @user.posts.count %></li>
+    <li>Reviews: <%= @user.reviews.count %></li>
+    <li>Up Votes: <%= @user.up_vote_count %></li>
+    <li>Down Votes: <%= @user.down_vote_count %></li>
+  </ul>
+  <h3>Posts</h3>
+  <ul>
+    <% @user.posts.each do |post| %>
+      <%= link_to post.title, posts_path(post) %>
+    <% end %>
+  </ul>
+  <h3>Reviews</h3>
+  </ul>
+   <% @user.reviews.each do |review| %>
+      <%= link_to review.body, posts_path(review.post) %>
+    <% end %>
+  <ul>
+
+  </ul>
+</div>
 
 <% if current_user == @user %>
   <%= simple_form_for @user, :html => {:multipart => true} do |f| %>
@@ -15,3 +42,5 @@
      </p>
   <% end %>
 <% end %>
+
+

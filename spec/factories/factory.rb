@@ -5,13 +5,14 @@ FactoryGirl.define do
     sequence(:username) {|n| "DouglasFresh#{n}"}
     password 'password'
     password_confirmation 'password'
+    avatar 'anthony.png'
   end
 
   factory :post do
-    title "MyString"
-    url "http://www.google.com"
-    description "MyText"
-    tags "MyString"
+    title "Wondering how to turn your teeth from white to GOLD?"
+    url "http://www.blingyomouth.com"
+    description "Lil Tee & Lil Wayne show you how to bling your mouth!"
+    tags "bling, mouth, tutorial, awesome"
     user
   end
 

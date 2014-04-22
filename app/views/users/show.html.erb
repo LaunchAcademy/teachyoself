@@ -1,0 +1,17 @@
+<% if @user.avatar_url %>
+  <p><label><%= @user.username %></label>
+  <%= image_tag(@user.avatar_url) %></p>
+<% else %>
+  <p>There is not currently a profile picture for <%= @user.username %></p>
+<% end %>
+
+<% if current_user == @user %>
+  <%= simple_form_for @user, :html => {:multipart => true} do |f| %>
+    <p>
+      <label>Change or Update Avatar</label>
+      <%= f.file_field :avatar %>
+      <%= f.hidden_field :avatar_cache %>
+      <%= f.submit %>
+     </p>
+  <% end %>
+<% end %>

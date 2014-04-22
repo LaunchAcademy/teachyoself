@@ -7,7 +7,7 @@ feature 'Unregistered user visits home page', %q{
 } do
 
   before(:each) do
-    visit '/posts'
+    visit posts_path
   end
 
   context 'sees a nav bar and can visit links' do
@@ -26,24 +26,6 @@ feature 'Unregistered user visits home page', %q{
     it 'has a link called search' do
       expect(page).to have_content "Search"
     end
-  end
-
-  context 'sees a list of popular posts' do
-
-    it 'should have review count' do
-
-    end
-
-    it 'should have a post title' do
-
-    end
-
-    it 'should have a created by user' do
-
-    end
-
-    it 'should have a submission date'
-    it 'should have a rating'
   end
 end
 

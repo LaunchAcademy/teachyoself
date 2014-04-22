@@ -7,7 +7,7 @@ class Review < ActiveRecord::Base
     greater_than: 0,
     less_than: 6
   }
-  validates :user_id, presence: true
+  validates :user_id, presence: true, uniqueness: true
   validates :post_id, presence: true
 
   def vote_sum

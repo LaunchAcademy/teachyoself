@@ -11,5 +11,15 @@ class User < ActiveRecord::Base
   has_many :votes
   validates_integrity_of :avatar
   validates_processing_of :avatar
+
+  def has_voted?(review_obj)
+    review_obj.votes.each do |vote|
+      if vote.user == self
+        return true
+      end
+    end
+    false
+  end
+
 end
 

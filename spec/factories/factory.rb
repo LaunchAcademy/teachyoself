@@ -17,7 +17,7 @@ FactoryGirl.define do
   end
 
   factory :review do
-    body "MyText"
+    body "My Text"
     rating 1
     user
     post

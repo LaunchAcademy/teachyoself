@@ -31,21 +31,47 @@
     <tr>
       <td><%= review.rating %></td>
       <td><%= review.body %></td>
-      <td>
+      <% if user_signed_in? && current_user.has_voted?(review) == false %>
+        <td>
         <%= simple_form_for [review, Vote.new] do |f| %>
           <%= f.hidden_field :vote, value: 1 %>
-          <%= f.button :submit, "Vote Up" %>
+          <%= f.button :submit, " Vote Up " %>
         <% end %>
-      </td>
-      <td>
+        </td>
+        <td>
         <%= simple_form_for [review, Vote.new] do |f| %>
           <%= f.hidden_field :vote, value: -1 %>
           <%= f.button :submit, "Vote Down" %>
         <% end %>
-      </td>
+        </td>
+      <% elsif user_signed_in? && current_user.has_voted?(review) == true %>
+        <% review.votes.each do |vote| %>
+          <% if vote.user_id == current_user.id && vote.vote != 1%>
+            <td colspan = "2">
+            <%= simple_form_for [review, Vote.new] do |f| %>
+              <%= f.hidden_field :vote, value: 1 %>
+              <%= f.button :submit, " Vote Up " %>
+            <% end %>
+            </td>
+          <% end %>
+        <% end %>
+        <% review.votes.each do |vote| %>
+          <% if vote.user_id == current_user.id && vote.vote != -1%>
+            <td colspan = "2">
+            <%= simple_form_for [review, Vote.new] do |f| %>
+              <%= f.hidden_field :vote, value: -1 %>
+              <%= f.button :submit, "Vote Down" %>
+            <% end %>
+            </td>
+          <% end %>
+        <% end %>
+      <% else %>
+         <td colspan="2"> you must be signed in to vote
+        </td>
+      <% end %>
       <td id="vote-count<%= review.id %>"><%= review.vote_sum %></td>
     </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 

@@ -2,7 +2,11 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @posts = Post.includes([:reviews])
+    if !(params[:search].blank?)
+      @posts = Post.search(params[:search])
+    else
+      @posts = Post.includes([:reviews])
+    end
   end
 
   def new

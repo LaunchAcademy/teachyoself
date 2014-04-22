@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   factory :post do
-    title "Wondering how to turn your teeth from white to GOLD?"
+    sequence(:title) { |n| "Wondering how to turn your teeth from white to GOLD? #{n}" }
     url "http://www.blingyomouth.com"
     description "Lil Tee & Lil Wayne show you how to bling your mouth!"
     tags "bling, mouth, tutorial, awesome"

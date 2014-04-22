@@ -1,0 +1,27 @@
+<%= link_to "Home", posts_path %>
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+<%= form_tag destroy_multiple_admin_posts_path, method: :delete do %>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Description</th>
+      <th>Tags</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.url %></td>
+      <td><%= post.description %></td>
+      <td><%= post.tags %></td>
+      <td><%= check_box_tag "post_ids[]", post.id %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= submit_tag "Delete selected" %>
+<% end %>

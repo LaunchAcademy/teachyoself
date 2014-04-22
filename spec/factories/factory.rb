@@ -19,7 +19,7 @@ FactoryGirl.define do
   factory :review do
     body "MyText"
     rating 1
-    user_id 1
-    post_id 1
+    user
+    post
   end
 end

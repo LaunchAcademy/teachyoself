@@ -3,6 +3,7 @@ TeachYoSelf::Application.routes.draw do
   devise_for :users
 
   root to: "posts#index"
+  resources :votes
 
   resources :users, only: [:show, :update]
 
@@ -24,6 +25,10 @@ TeachYoSelf::Application.routes.draw do
         delete 'destroy_multiple'
       end
     end
+  end
+
+  resources :reviews, only: [] do
+    resources :votes, only: [:create, :update]
   end
 
 

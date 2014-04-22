@@ -27,8 +27,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @review = Review.new
     @reviews = @post.reviews
+    # @vote = Vote.vew
+    # @votes = @post.comments.reviews
   end
-
 
   private
   def post_params

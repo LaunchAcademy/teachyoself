@@ -22,6 +22,8 @@
     <tr>
       <th>Rating</th>
       <th>Review</th>
+      <th colspan="2">Vote</th>
+      <th>Net Votes</th>
     </tr>
   </thead>
   <tbody>
@@ -29,6 +31,19 @@
     <tr>
       <td><%= review.rating %></td>
       <td><%= review.body %></td>
+      <td>
+        <%= simple_form_for [review, Vote.new] do |f| %>
+          <%= f.hidden_field :vote, value: 1 %>
+          <%= f.button :submit, "Vote Up" %>
+        <% end %>
+      </td>
+      <td>
+        <%= simple_form_for [review, Vote.new] do |f| %>
+          <%= f.hidden_field :vote, value: -1 %>
+          <%= f.button :submit, "Vote Down" %>
+        <% end %>
+      </td>
+      <td id="vote-count<%= review.id %>"><%= review.vote_sum %></td>
     </tr>
     <% end %>
   </tbody>

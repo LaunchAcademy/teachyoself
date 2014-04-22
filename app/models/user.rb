@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: {case_sensitive: false}
   has_many :posts
   has_many :reviews
+  has_many :votes
   validates_integrity_of :avatar
   validates_processing_of :avatar
 end

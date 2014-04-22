@@ -21,5 +21,13 @@ class User < ActiveRecord::Base
     false
   end
 
+  def has_reviewed?(post)
+    post.reviews.each do |review|
+      if review.user == self
+        return true
+      end
+    end
+    false
+  end
 end
 
